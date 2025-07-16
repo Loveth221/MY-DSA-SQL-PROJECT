@@ -97,6 +97,11 @@ Case scenerio 2: Customer profitability and operational insights
   - Which customer returned items, and what segment do they belong to?
   - Was shipping cost aligned with order priority?(Delivery Truck vs Express Air)
 
+## SQL QUERIES AND OUTPUTS
+
+
+
+
 
 
      
