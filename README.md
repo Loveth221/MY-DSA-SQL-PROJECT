@@ -312,10 +312,15 @@ Select * From [dbo].[vw_dbokmsdboord]
 ---Question 5: KMS incurred the most shipping cost using which shipping method?
 
 Select Top 1
+     
       Order_Priority, Ship_Mode,
-	  Sum(Shipping_Cost) As Total_Cost
+	 
+   Sum(Shipping_Cost) As Total_Cost
+
 From [dbo].[KMSORDER]
+
 Group by Order_Priority, Ship_Mode
+
 Order by Total_Cost Desc
 
 ---Answer: Order_Priority = (Low) / Shiping Method = Delevery Struck / Shipping Cost = $1,659.14
@@ -324,49 +329,101 @@ Order by Total_Cost Desc
 ------Question 6: Who are the most valuable customers, and what products or services do they typically purchase?
 
 WITH CustomerRevenue AS (
+   
     SELECT
-        Customer_Name,
-        Customer_Segment,
-        SUM(Sales) AS Total_Revenue
+        
+	Customer_Name,
+       
+	Customer_Segment,
+       
+	SUM(Sales) AS Total_Revenue
+   
     FROM [dbo].[vw_dbokmsdboord]
+    
     GROUP BY Customer_Name, Customer_Segment
+
 ),
+
 CustomerProductRevenue AS (
+   
     SELECT 
-        Customer_Name,
-        Product_Name,
-		Order_Quantity,
-        SUM(Sales) AS Product_Revenue,
-        ROW_NUMBER() OVER (
-            PARTITION BY Customer_Name 
-            ORDER BY SUM(Sales) DESC, Product_Name DESC
-        ) AS Product_Rank
+      
+	Customer_Name,
+        
+	Product_Name,
+		
+           Order_Quantity,
+       
+	SUM(Sales) AS Product_Revenue,
+        
+	ROW_NUMBER() OVER (
+            
+	    PARTITION BY Customer_Name 
+           
+	    ORDER BY SUM(Sales) DESC, Product_Name DESC
+       
+	) AS Product_Rank
+   
     FROM [dbo].[vw_dbokmsdboord]
+   
     GROUP BY Customer_Name, Product_Name, Order_Quantity
+
 )
+
 SELECT TOP 5
+   
     cr.Customer_Name,
+   
     cr.Customer_Segment,
+    
     cpr.Product_Name AS Top_Product,
-	cpr.Order_Quantity,
+	
+    cpr.Order_Quantity,
+   
     cr.Total_Revenue
+
 FROM CustomerRevenue cr
+
 JOIN CustomerProductRevenue cpr 
+   
     ON cr.Customer_Name = cpr.Customer_Name 
+   
     AND cpr.Product_Rank = 1
+
 ORDER BY cr.Total_Revenue DESC
 
 ----Answer: We have our Top 5, having that the (top product that are being purchased are as follow:
 
-------Customer_Name       Customer_Segment    Top_Product                                                            Total_Revenue                         
+------Customer_Name       Customer_Segment    Top_Product                                                            
 
----1---John Lucas          Small Business      Chromcraft Bull-Nose Wood 48" x 96" Rectangular Conference Tables      $37,919.43
----2---Lycoris Saunders    Corporate           Bretford CR8500 Series Meeting Room Furniture                          $30,948.18
----3---Peter Fuller        Corporate           Panasonic KX-P3626 Dot Matrix Printer                                  $26,485.12
----4---Julia West          Home Office         Riverside Palais Royal Lawyers Bookcase, Royale Cherry Finish          $26,443.02
----5---Darren Budd         Home Office         Sharp AL-1530CS Digital Copier                                         $26,382.21
------------------//////////////////////////////////////////////////////////////////////////////////////////////////////-------------------------
+Total_Revenue                         
+
+---1---John Lucas          Small Business      Chromcraft Bull-Nose Wood 48" x 96" Rectangular Conference Tables      
+
+$37,919.43
+
+---2---Lycoris Saunders    Corporate           Bretford CR8500 Series Meeting Room Furniture                          
+
+$30,948.18
+
+---3---Peter Fuller        Corporate           Panasonic KX-P3626 Dot Matrix Printer                                  
+
+$26,485.12
+
+---4---Julia West          Home Office         Riverside Palais Royal Lawyers Bookcase, Royale Cherry Finish          
+
+$26,443.02
+
+---5---Darren Budd         Home Office         Sharp AL-1530CS Digital Copier                                         
+
+$26,382.21
+
+-----------------//////////////////////////////////////////////////////////////////////////////////////////////////////-
+
+------------------------
+
 -----Select View------
+
 Select * From [dbo].[vw_dbokmsdboord]
 
 ---Question 7: Which (Small business customer) had the highest sales?
