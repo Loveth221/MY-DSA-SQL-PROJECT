@@ -26,4 +26,14 @@ insight and findings and provide actionable
 
 recommendations.
 
+The case study featured typical business scenerios,
+
+from identifying top customers and sales trends to 
+
+evaluating cost efficiency in logistics. Queries were
+
+written and executed in SQL Server, covering both sales
+
+performance and operational decisions.
+
 
