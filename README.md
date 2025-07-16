@@ -101,20 +101,20 @@ Case scenerio 2: Customer profitability and operational insights
 
 Create Database [Kultra_Mega_Stores_Inventory_DB]
 
------Import Tables---
+--Import Tables---
 
 ---CSV Table 1. [dbo].[KMS Sql Case Study]
 
 ---CSV table 2. [dbo].[Order_Status]
 
 
-------------Tables........
+---Tables.....
 
 Select * From [dbo].[KMS Sql Case Study]
 
 Select * From [dbo].[Order_Status]
 
-------- Create Table View -------
+-- Create Table View ---
 
 CREATE VIEW vw_dbokmsdboord
 
@@ -197,7 +197,7 @@ Group by Product_Category
 
 Order by Total_Sales Desc
 
------Answer: Product Category = (Technology) --- Sales = $605,426.04
+--Answer: Product Category = (Technology) --- Sales = $605,426.04
 
 
 
