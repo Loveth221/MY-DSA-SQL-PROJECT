@@ -84,6 +84,18 @@ and analysed using SQL Server.
 
    - which product category has the highest sales?
    - what are the top 3 and bottom 3 regions by total sales
+   - What are the total sales of appliance in Ontario>
+   - Which shipping method incurred the highest cost?
+   - What strategies can improve revenue from the bottom 10 customers?
+
+Case scenerio 2: Customer profitability and operational insights
+
+  - Who are the most valuable customer and what do they purchase?
+  - Which small business customer had the highest sales?
+  - Which coperate customer placed the most orders(2009-2012)?
+  - Which consumer customers was the most profitable?
+  - Which customer returned items, and what segment do they belong to?
+  - Was shipping cost aligned with order priority?(Delivery Truck vs Express Air)
 
 
 
