@@ -102,10 +102,14 @@ Case scenerio 2: Customer profitability and operational insights
 Create Database [Kultra_Mega_Stores_Inventory_DB]
 
 -----Import Tables---
+
 ---CSV Table 1. [dbo].[KMS Sql Case Study]
+
 ---CSV table 2. [dbo].[Order_Status]
 
+
 ------------Tables........
+
 Select * From [dbo].[KMS Sql Case Study]
 
 Select * From [dbo].[Order_Status]
@@ -113,49 +117,83 @@ Select * From [dbo].[Order_Status]
 ------- Create Table View -------
 
 CREATE VIEW vw_dbokmsdboord
+
 AS
+
 SELECT
+   
     kms.[Row_ID],
+   
     kms.[Order_ID],
+   
     kms.[Order_Date],
+   
     kms.[Order_Priority],
+   
     kms.[Order_Quantity],
+   
     kms.[Sales],
+   
     kms.[Discount],
+   
     kms.[Ship_Mode],
+   
     kms.[Shipping_Cost],
+   
     kms.[Customer_Name],
+   
     kms.[Province],
+   
     kms.[Region],
+   
     kms.[Customer_Segment],
+   
     kms.[Product_Category],
+  
     kms.[Product_Sub_Category],
+   
     kms.[Product_Name],
+   
     kms.[Product_Container],
+   
     kms.[Product_Base_Margin],
+   
     kms.[Ship_Date],
+   
     ord.[status]
+
+
 From [dbo].[KMS Sql Case Study] kms
+
 inner join [dbo].[Order_Status] ord
+
 on kms.Order_ID = ord.Order_ID
 
 -----Select View------
+
 Select * From [dbo].[vw_dbokmsdboord]
 
 ------Update View------
 
 UPDATE [dbo].[vw_dbokmsdboord]
+
 SET [Product_Base_Margin] = COALESCE([Product_Base_Margin], 0.00)
+
 WHERE [Product_Base_Margin] IS NULL
 
 
 ----Question 1: Which product category had the highest sales?
 
 Select Top 1
+     
       Product_Category,
-	  Sum(Sales) As Total_Sales
+	 
+   Sum(Sales) As Total_Sales
+
 From [dbo].[vw_dbokmsdboord]
+
 Group by Product_Category
+
 Order by Total_Sales Desc
 
 -----Answer: Product Category = (Technology) --- Sales = $605,426.04
@@ -166,10 +204,15 @@ Order by Total_Sales Desc
 --Top 3
 
 select Top 3
-      Region,
-	  Sum(Sales) As Total_Sales
+      
+       Region,
+	 
+     Sum(Sales) As Total_Sales
+
 From [dbo].[vw_dbokmsdboord]
+
 Group by  Region
+
 Order by Total_Sales Desc
 
 ---Answer: Top 3 Regions; Ontario = $471,161.63 / West = $375,122.37 / Prarie = $296,732.24 
@@ -189,10 +232,15 @@ Order by Total_Sales Asc
 ----Quest 3: What were the total sales of appliances in Ontario?
 
 SELECT Region,
+    
     SUM(Sales) AS Total_Sales
+
 FROM [dbo].[vw_dbokmsdboord]
+
 WHERE Region = 'Ontario'
+ 
   And Product_Sub_Category = 'appliances'
+
 Group By Region
 
 ---Answer: = Total Sales of Appliances in Ontario = $17,648.37
@@ -204,36 +252,61 @@ Select * From [dbo].[vw_dbokmsdboord]
 ----- Question 4: Advise the management of KMS on what to do to increase the revenue from the bottom 10 customer
 
 Select Top 10
+     
       Customer_Name,
-	  Sum(Sales) As Total_Revenue
+	 
+     Sum(Sales) As Total_Revenue
+
 From [dbo].[vw_dbokmsdboord]
+
 Group by Customer_Name
+
 Order by Total_Revenue Asc
 
 --------- BOTTOM 10 CUSTOMERS-----------------------
+
 --Customer Name          Total Sales
 
 --John Grady       =     $5.06
+
 --Frank Atkinson   =     $10.48
+
 --Sean Wendt       =     $12.80
+
 --Sandra Glassco   =     $16.24
+
 --Katherine Hughes =     $17.77 
+
 --Bobby Elias      =     $22.56
+
 --Noel Staavos     =     $24.91
+
 --Thomas Boland    =     $28.01
+
 --Brad Eason       =     $435.17
+
 --Theresa Swint    =     $38.51
+
 ---------//////////////////////////////////////////////--------------------------
 
----Answer: MY ADVISE TO THE MANAGEMENT OF KMS IN ORDER TO INCREASE THE REVENUE FROM THE BOTTOM 10 CUSTOMERS......................
+---Answer: MY ADVISE TO THE MANAGEMENT OF KMS IN ORDER TO INCREASE THE REVENUE FROM THE BOTTOM 10 
+
+CUSTOMERS......................
+
 ------- a- Identify the bottom 10 customers by total sales.
+
 --------b- Analyze purchase patterns and feedback.
+
 --------c- Offer targeted promotions or loyalty incentives.
+
 --------d- Assign dedicated account managers or support for better engagement.
+
 --------e- Upsell or cross-sell complementary products.
+
 --------f- Improve delivery timelines and customer service.
 
 -----Select View------
+
 Select * From [dbo].[vw_dbokmsdboord]
 
 ---Question 5: KMS incurred the most shipping cost using which shipping method?
