@@ -36,7 +36,7 @@ written and executed in SQL Server, covering both sales
 
 performance and operational decisions.
 
-# DATA SOURCE
+## DATA SOURCE
 
 The dataset was provided by the DSA Incubator Hub and contains
 
@@ -47,5 +47,46 @@ includes sales, categories, shipping method, product category,
 regions, and order priorities. The data was shared in Excel format
 
 and analysed using SQL Server.
+
+## TOOLS USED
+
+ - SQL Server Management Studio
+   (SSMS)
+ - SQL (Aggregation, Grouping,
+   Subqueries, Joins)
+ - Github ( Project documentation)
+
+## DATA CLEANING AND PREPARATION
+
+ - The data set was first reviewd and cleaned in Excel, where duplicate
+
+   reccords were checked and none was found, the file was saved to CSV
+
+   UTF-8 Format.
+
+ - A new database was created in SQL Server Management Studio(SSMD)
+  
+   using SQL querries, after which the cleaned Excel file was imported.
+
+ - During the import process appropriate data type were assigned to
+  
+   columns as needed. NULL values were permitted for three specific
+
+   columns to preserve data integrity and flexibility during querries.
+
+## EXPLORATORY DATA ANALYSIS
+
+  The Kultra Mega stores inventory Dataset was explore(Structured Querry
+  
+  Language) to answer and draw insights from some questions such as:
+
+  case scenerios 1: Sales and regional performance
+
+   - which product category has the highest sales?
+   - what are the top 3 and bottom 3 regions by total sales
+
+
+
+     
 
 
