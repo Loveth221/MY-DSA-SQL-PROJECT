@@ -36,4 +36,16 @@ written and executed in SQL Server, covering both sales
 
 performance and operational decisions.
 
+# DATA SOURCE
+
+The dataset was provided by the DSA Incubator Hub and contains
+
+simulated order data(2009-2012) from Kultra Mega Store(KMS). It 
+
+includes sales, categories, shipping method, product category, 
+
+regions, and order priorities. The data was shared in Excel format
+
+and analysed using SQL Server.
+
 
