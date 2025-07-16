@@ -182,7 +182,8 @@ SET [Product_Base_Margin] = COALESCE([Product_Base_Margin], 0.00)
 WHERE [Product_Base_Margin] IS NULL
 
 
-----Question 1: Which product category had the highest sales?
+
+ - Question 1: Which product category had the highest sales?
 
 Select Top 1
      
@@ -199,7 +200,8 @@ Order by Total_Sales Desc
 -----Answer: Product Category = (Technology) --- Sales = $605,426.04
 
 
-----Question 2: What are the top 3 and bottom 3 regions in terms of sales------
+
+ - Question 2: What are the top 3 and bottom 3 regions in terms of sales------
 
 --Top 3
 
@@ -229,7 +231,8 @@ Order by Total_Sales Asc
 ---Answer: B0ttom 3 Regions; Ontario = $4.94, West = $5.06, Prarie $5.63
 
 
-----Quest 3: What were the total sales of appliances in Ontario?
+
+ -Quest 3: What were the total sales of appliances in Ontario?
 
 SELECT Region,
     
@@ -249,7 +252,8 @@ Group By Region
 Select * From [dbo].[vw_dbokmsdboord]
 
 
------ Question 4: Advise the management of KMS on what to do to increase the revenue from the bottom 10 customer
+
+ - Question 4: Advise the management of KMS on what to do to increase the revenue from the bottom 10 customer
 
 Select Top 10
      
@@ -307,7 +311,9 @@ CUSTOMERS...
 
 Select * From [dbo].[vw_dbokmsdboord]
 
----Question 5: KMS incurred the most shipping cost using which shipping method?
+
+
+ - Question 5: KMS incurred the most shipping cost using which shipping method?
 
 Select Top 1
      
@@ -324,7 +330,8 @@ Order by Total_Cost Desc
 ---Answer: Order_Priority = (Low) / Shiping Method = Delevery Struck / Shipping Cost = $1,659.14
 
 
-------Question 6: Who are the most valuable customers, and what products or services do they typically purchase?
+
+ - Question 6: Who are the most valuable customers, and what products or services do they typically purchase?
 
 WITH CustomerRevenue AS (
    
@@ -421,7 +428,8 @@ $26,382.21
 Select * From [dbo].[vw_dbokmsdboord]
 
 
----Question 7: Which (Small business customer) had the highest sales?
+
+ - Question 7: Which (Small business customer) had the highest sales?
 
 WITH CustomerRevenue AS (
    
@@ -496,7 +504,8 @@ ORDER BY cr.Total_Revenue DESC
 Select * From [dbo].[vw_dbokmsdboord]
 
 
-----Question 8: Which (Corporate Customer) placed the most (number of orders) in (2009 – 2012)?
+
+ - Question 8: Which (Corporate Customer) placed the most (number of orders) in (2009 – 2012)?
 
 SELECT TOP 1
   
@@ -519,7 +528,8 @@ ORDER BY Total_Orders DESC
 Total_Orders = 261
 
 
----Question 9: Which (Consumer customer) was the (most profitable one)?
+
+ - Question 9: Which (Consumer customer) was the (most profitable one)?
 
 SELECT TOP 1
     
@@ -542,7 +552,8 @@ ORDER BY Total_Revenue Desc
 Select * From [dbo].[vw_dbokmsdboord]
 
 
-----Question 10: Which customer returned items? And what segment do they belong to?
+
+ - Question 10: Which customer returned items? And what segment do they belong to?
 
 SELECT TOP 872
    
@@ -558,30 +569,31 @@ ORDER BY Total_Returned_Items Desc
 
 ----Answer: Customers that (Returned Items) According to their (Segment);
 
-  --- Customer_Name         Customer_Segment    Total_Returned_Items
+  --- Customer_Name         Customer_Segment      Total_Returned_Items
 
---1---Christy Brittain	    Consumer	        Returned
+--1---Christy Brittain	      Consumer	           Returned
 
---2---Charles Crestani	    Consumer	        Returned
+--2---Charles Crestani	      Consumer	           Returned
 
---3---Carlos Soltero	    Consumer	        Returned
+--3---Carlos Soltero	      Consumer	           Returned
 
---4---Carl Weiss	    Consumer	        Returned
+--4---Carl Weiss	      Consumer	           Returned
 
---5---Brian Stugart	     Consumer	        Returned
+--5---Brian Stugart	      Consumer	           Returned
 
---6---Brendan Sweed	     Consumer	        Returned
+--6---Brendan Sweed	      Consumer	           Returned
 
---7---Becky Castell	     Consumer	        Returned
+--7---Becky Castell	      Consumer	          Returned
 
---8---Anthony O'Donnell      Consumer	        Returned
+--8---Anthony O'Donnell       Consumer	          Returned
 
---9---Annie Thurman	     Consumer	        Returned
+--9---Annie Thurman	      Consumer	          Returned
 
---10--Anne Pryor	     Consumer	        Returned
+--10--Anne Pryor	      Consumer	          Returned
 
 
------Question 11....
+
+ - Question 11....
 
 ---If the delivery truck is the most economical but the slowest shipping method and 
 
