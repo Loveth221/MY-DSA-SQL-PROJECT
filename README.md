@@ -428,43 +428,79 @@ Select * From [dbo].[vw_dbokmsdboord]
 
 ---Question 7: Which (Small business customer) had the highest sales?
 
+
 WITH CustomerRevenue AS (
+   
     SELECT 
-        Customer_Name,
-        Customer_Segment,
-        SUM(Sales) AS Total_Revenue
+       
+	Customer_Name,
+       
+	Customer_Segment,
+       
+	SUM(Sales) AS Total_Revenue
+   
     FROM [dbo].[vw_dbokmsdboord]
-	Where Customer_Segment = 'Small Business'
+	
+       Where Customer_Segment = 'Small Business'
+   
     GROUP BY Customer_Name, Customer_Segment
+
 ),
+
 CustomerProductRevenue AS (
+   
     SELECT 
-        Customer_Name,
-        Product_Name,
-		Order_Quantity,
-        SUM(Sales) AS Product_Revenue,
-        ROW_NUMBER() OVER (
-            PARTITION BY Customer_Name 
-            ORDER BY SUM(Sales) DESC, Product_Name DESC
-        ) AS Product_Rank
+        
+	Customer_Name,
+        
+	Product_Name,
+		
+        Order_Quantity,
+       
+	SUM(Sales) AS Product_Revenue,
+        
+	ROW_NUMBER() OVER (
+           
+	    PARTITION BY Customer_Name 
+           
+	    ORDER BY SUM(Sales) DESC, Product_Name DESC
+      
+	) AS Product_Rank
+    
     FROM [dbo].[vw_dbokmsdboord]
+    
     GROUP BY Customer_Name, Product_Name, Order_Quantity
+
 )
+
 SELECT TOP 1
+  
     cr.Customer_Name,
+   
     cr.Customer_Segment,
+   
     cpr.Product_Name AS Top_Product,
-	cpr.Order_Quantity,
+	
+    cpr.Order_Quantity,
+   
     cr.Total_Revenue
+
 FROM CustomerRevenue cr
+
 JOIN CustomerProductRevenue cpr 
+  
     ON cr.Customer_Name = cpr.Customer_Name 
+   
     AND cpr.Product_Rank = 1
+
 ORDER BY cr.Total_Revenue DESC
 
 ---Answer: The Custormer_Segment = (Small Business) / Customer_Name = (John Lucas) / Total_Revenue = $37,919.43
+
 ----------////////////////////////////////////////////////////////////////////////////-----------------------------------
+
 -----Select View------
+
 Select * From [dbo].[vw_dbokmsdboord]
 
 
